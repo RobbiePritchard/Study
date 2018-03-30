@@ -1,0 +1,26 @@
+//: Playground - noun: a place where people can play
+
+import Foundation
+
+var nums = [2,3,4,5]
+
+class Solution {
+    func productExceptSelf(_ nums: [Int]) -> [Int] {
+        var values = nums
+        var final = [Int](repeating: 1, count: nums.count)
+        var l = 1
+        var r = 1
+        
+        for x in 1..<values.count{
+            l = l * values[x-1]
+            final[x] = l
+        }
+        values = values.reversed()
+        for x in 1..<values.count{
+            r = r * values[x-1]
+            final[(values.count-x-1)] *= r
+        }
+        return final
+    }
+}
+Solution().productExceptSelf(nums)
